@@ -1,0 +1,5 @@
+1. Write a program that simulates a fortune cookie. The program should display one of five unique fortunes, at random, each time it's run.
+
+2. Write a program that flips a coin 100 times and then tells the number of heads and tails.
+
+3. Modify the Guess My Number game so that the player has a limited number of guesses. If the player fails to guess in time, the program should display an appropriately chastising message.
