@@ -1,31 +1,35 @@
-# Word Jumble
-#
-# The computer picks a random word and then "jumbles" it
-# the player has to guess the original word
+# ch_4_ex3_word_jumble_improvement
 
-
-# import the random module
 import random
 
-# Words data set
-WORDS = ("dogs", "dicitionary", "parameter", "argument", "Javascript", "frameword")
+WORDS = ("dragonfruit", "spectacular", "bumblebee", "perfidious", "coriander", "acquifer")
 
-# grab one of the words from WORDS
-choice = random.choice(WORDS)
+word_selected = random.choice(WORDS)
 
-correct = choice
+hint_pos = 0
+stored_word = word_selected
+user_choice = "n"
+guess = ""
+jumbled_word = ""
 
-#create empty string to fill with jumbled word
-jumbled = ""
+while len(word_selected) > 0:
+    letter_choice = random.randint(0, len(word_selected) - 1)
+    jumbled_word += word_selected[letter_choice]
+    word_selected = word_selected[:letter_choice] + word_selected[letter_choice + 1: len(word_selected)]
 
-#loop to create the jumbled word
+print(jumbled_word)
 
-while choice:
-	letter_to_add = random.randrange(len(choice))
-	jumbled += choice[letter_to_add]
-	choice = choice[:letter_to_add] + choice[(letter_to_add)]
+print("\t\t\t Word Jumble, improved!")
+while guess != stored_word:
+    print("\nYour jumbled word is...: ", jumbled_word)
+    guess = input("Please input your guess as to what the jumbled_word is or press 'h' then enter for a hint: " )
+    if guess.lower() == 'h':
+        hint_pos += 1
+        print("\nYou've asked for", hint_pos, "hints so far.")
+        print("\nThe first", hint_pos, "letters in the word are:", stored_word[0: hint_pos])
 
-print("\t\t\tWORD JUMBLER!")
-print("\n\nWelcome to word jumble, can you identify the jumbled word?")
-print(jumbled)
-print(word)
+print("\nYay, you guessed the word correctly!")
+if hint_pos > 0:
+    print("You needed", hint_pos, "hints to guess the word.")
+    if hint_pos > 3:
+        print("You are really bad at this.")
